@@ -28,5 +28,5 @@ pipeline {
               customImage.push("${env.BUILD_NUMBER}")   
         }
           }
-            }
+             }
 }
