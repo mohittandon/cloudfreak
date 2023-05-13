@@ -16,7 +16,7 @@ pipeline {
           steps { 
                   sh 'pwd'
 		      sh 'cp -r target/*.jar docker'
-                }
+          }
         }
          
         stage('Build docker image') {
@@ -29,5 +29,4 @@ pipeline {
             }
           }
         }
-}
 }
