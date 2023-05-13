@@ -3,11 +3,12 @@ pipeline {
     tools {
       maven 'maven3'
                  jdk 'JDK8'
-    }      
+    }
+    stages {      
         stage('Build maven ') {
             steps { 
-                    sh 'pwd'      
-                    sh 'mvn  clean install package'
+                  sh 'pwd'      
+            sh 'mvn  clean install package'
             }
         }
         
@@ -29,5 +30,5 @@ pipeline {
             }
           }
         }
-}
+  }
 }
