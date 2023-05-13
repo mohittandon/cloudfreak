@@ -21,10 +21,13 @@ pipeline {
          
         stage('Build docker image') {
            steps {
-               script {         
-                 def customImage = docker.build('mohittndn/petclinic', "./docker")
-                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                 customImage.push("${env.BUILD_NUMBER}")
+               script { 
+		  withCredentials([string(credentialsId: 'dockerhub_password', variable: 'Dockerhub_pass')]) {
+			sh "docker login -u mohittndn -p ${dockerhub_password}"
+		     }
+                        def customImage = docker.build('mohittndn/petclinic', "./docker")
+                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        customImage.push("${env.BUILD_NUMBER}")
                  }                     
            }
         }
