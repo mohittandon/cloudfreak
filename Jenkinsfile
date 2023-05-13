@@ -23,7 +23,7 @@ pipeline {
         stage('Build docker image') {
           steps {
             script {
-              withCredentials([string(credentialsId: 'dockerhub_password', variable: 'Dockerhub_pass')]) {
+              withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_pass')]) {
                 sh "docker login -u mohittndn -p ${dockerhub_password}"
 		def customImage = docker.build('mohittndn/petclinic', "./docker")
                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
