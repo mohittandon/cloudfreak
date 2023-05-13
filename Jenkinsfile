@@ -26,10 +26,10 @@ pipeline {
               sh "docker login -u mohittndn -p ${dockerhub_password}"
 	      def customImage = docker.build('mohittndn/petclinic', "./docker")
               docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-              customImage.push("${env.BUILD_NUMBER}")     
+              customImage.push("${env.BUILD_NUMBER}")
+              }    
             }
           }
         }
   }
-}
 }
